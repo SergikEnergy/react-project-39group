@@ -1,0 +1,48 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "team's project react ",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergikEnergy/react-project-39group.git"
+  },
+  "author": "team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergikEnergy/react-project-39group/issues"
+  },
+  "homepage": "https://github.com/SergikEnergy/react-project-39group#readme",
+  "scripts": {
+    "dev": "webpack serve --open",
+    "prod": "webpack --config webpack.config.js --mode production",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ./**/*.{js,jsx,css,md,json} --config ./.prettierrc.json"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^7.1.1",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "prettier": "^3.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.23.1"
+  }
+}

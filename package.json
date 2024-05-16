@@ -5,17 +5,13 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SergikEnergy/react-project-39group.git"
+    "url": "https://github.com/SergikEnergy/react-project-39group.git"
   },
   "author": "team",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SergikEnergy/react-project-39group/issues"
-  },
-  "homepage": "https://github.com/SergikEnergy/react-project-39group#readme",
   "scripts": {
-    "dev": "webpack serve --open",
-    "prod": "webpack --config webpack.config.js --mode production",
+    "dev": "webpack serve --open --mode=development",
+    "prod": "webpack --config=webpack.config.js --mode=production",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ./**/*.{js,jsx,css,md,json} --config ./.prettierrc.json"
@@ -35,14 +31,23 @@
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",
     "prettier": "^3.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "sass": "^1.77.1",
+    "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "react-router-dom": "^6.23.1"
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.18",
+    "@mui/material": "^5.15.18",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "styled-components": "^6.1.11"
   }
 }

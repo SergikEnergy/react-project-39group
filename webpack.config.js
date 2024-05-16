@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (_env, argv) => {
   const isProdMode = argv.mode === 'production';
@@ -8,12 +9,11 @@ module.exports = (_env, argv) => {
 
   return {
     entry: path.resolve(__dirname, 'src', 'index.js'),
-    mode: 'development',
     devtool: isDevMode && 'cheap-module-source-map',
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/'
+      publicPath: '/',
     },
     module: {
       rules: [
@@ -23,44 +23,55 @@ module.exports = (_env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }]],
               cacheDirectory: true,
               cacheCompression: false,
-              envName: isProdMode ? 'production' : 'development'
-            }
-          }
+              envName: isProdMode ? 'production' : 'development',
+            },
+          },
         },
         {
-          test: /\.css$/,
+          test: /\.(sa|sc|c)ss$/i,
           exclude: /node_modules/,
-          use: [isProdMode ? MiniCssExtractPlugin.loader : 'style-loader', +'css-loader']
+          use: [
+            isProdMode ? MiniCssExtractPlugin.loader : 'style-loader',
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.(png|svg|jpg|gif|jpeg)$/,
           exclude: /node_modules/,
-          use: ['file-loader']
-        }
-      ]
+          use: ['file-loader'],
+        },
+        {
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          loader: 'url-loader',
+          options: { limit: false },
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin({
-        template: path.resolve(__dirname, 'public', 'index.html')
+      new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src', 'index.html'),
       }),
       isProdMode &&
         new MiniCssExtractPlugin({
           filename: 'assets/css/[name].[contenthash:8].css',
-          chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css'
-        })
+          chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
+        }),
     ],
 
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      static: {
+        directory: path.join(__dirname, 'public'),
+      },
       port: 3000,
       open: true,
-      hot: true
-    }
+    },
   };
 };

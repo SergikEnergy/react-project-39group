@@ -33,11 +33,9 @@ module.exports = (_env, argv) => {
         {
           test: /\.(sa|sc|c)ss$/i,
           exclude: /node_modules/,
-          use: [
-            isProdMode ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-            'sass-loader',
-          ],
+          use: isProdMode
+            ? [MiniCssExtractPlugin.loader]
+            : ['style-loader', 'css-loader', 'sass-loader'],
         },
         {
           test: /\.(png|svg|jpg|gif|jpeg)$/,

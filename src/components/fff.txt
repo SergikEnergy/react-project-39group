@@ -1,0 +1,7 @@
+folder for components
+1. создаем папку под названием - как будет назван компонент в CustomComponent
+2. внутри создаем файл компонента CustomComponent.jsx
+3. файл стилей - (sass,css,scss - отдельно именуем как CustomComponent.css | scss | sass - и импортим его в компонент)
+4. Для styled-component - делаем отдельный файл CustomComponent.styled.js - и в нем уже создаем наши стилизованные элементы - которые потом просто забираем в компоненту
+
+5. Так для каждого компонента

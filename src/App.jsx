@@ -1,5 +1,4 @@
-import './App.scss';
-import { Button } from '@mui/material';
+import './App.css';
 
 export const App = () => {
   return (

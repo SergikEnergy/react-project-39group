@@ -5,5 +5,6 @@ export const APP_PATHS = {
   SIGN_IN: '/signin',
   FAVORITES: '/favorites',
   HISTORY: '/history',
-  NOT_FOUND: 'nor-found',
+  NOT_FOUND: '/not-found',
+  OTHER: '*',
 };

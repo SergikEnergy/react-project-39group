@@ -1,10 +1,6 @@
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import { routes } from './route/routes';
 
 export const App = () => {
-  return (
-    <div className="wrapper">
-      <h1>Hello World..!!</h1>
-      <Button>MUI Button Example</Button>
-    </div>
-  );
+  return <BrowserRouter>{routes}</BrowserRouter>;
 };

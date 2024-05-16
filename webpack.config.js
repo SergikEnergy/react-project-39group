@@ -75,8 +75,9 @@ module.exports = (_env, argv) => {
     ],
 
     devServer: {
+      historyApiFallback: true,
       static: {
-        directory: path.join(__dirname, 'public'),
+        directory: path.join(__dirname, '/'),
       },
       watchFiles: path.join(__dirname, 'src'),
       port: 3000,

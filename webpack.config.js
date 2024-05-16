@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { SourceMap } = require('module');
+const { watchFile } = require('fs');
 
 module.exports = (_env, argv) => {
   const isProdMode = argv.mode === 'production';
@@ -11,9 +13,8 @@ module.exports = (_env, argv) => {
     entry: path.resolve(__dirname, 'src', 'index.js'),
     devtool: isDevMode && 'cheap-module-source-map',
     output: {
-      filename: 'bundle.js',
+      filename: isProdMode ? '[name].[contenthash].js' : 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/',
     },
     module: {
       rules: [
@@ -23,7 +24,6 @@ module.exports = (_env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }]],
               cacheDirectory: true,
               cacheCompression: false,
               envName: isProdMode ? 'production' : 'development',
@@ -33,9 +33,15 @@ module.exports = (_env, argv) => {
         {
           test: /\.(sa|sc|c)ss$/i,
           exclude: /node_modules/,
-          use: isProdMode
-            ? [MiniCssExtractPlugin.loader]
-            : ['style-loader', 'css-loader', 'sass-loader'],
+          use: [
+            isProdMode ? MiniCssExtractPlugin.loader : 'style-loader',
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
         },
         {
           test: /\.(png|svg|jpg|gif|jpeg)$/,
@@ -50,12 +56,13 @@ module.exports = (_env, argv) => {
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.scss', '.sass'],
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),
+        favicon: './public/favIco.png',
       }),
       isProdMode &&
         new MiniCssExtractPlugin({
@@ -68,8 +75,10 @@ module.exports = (_env, argv) => {
       static: {
         directory: path.join(__dirname, 'public'),
       },
+      watchFiles: path.join(__dirname, 'src'),
       port: 3000,
       open: true,
+      hot: true,
     },
   };
 };

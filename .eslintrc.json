@@ -24,6 +24,12 @@
   },
   "plugins": ["react"],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "quotes": [1, "single"],
     "react/jsx-uses-react": "warn",
     "react/react-in-jsx-scope": "off",

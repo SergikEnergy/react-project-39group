@@ -2,12 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { SourceMap } = require('module');
-const { watchFile } = require('fs');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (_env, argv) => {
   const isProdMode = argv.mode === 'production';
   const isDevMode = !isProdMode;
+  const dotenvFileName = isProdMode ? '.env.production' : '.env.development';
 
   return {
     entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -59,6 +59,9 @@ module.exports = (_env, argv) => {
       extensions: ['.js', '.jsx', '.scss', '.sass'],
     },
     plugins: [
+      new Dotenv({
+        path: dotenvFileName,
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),

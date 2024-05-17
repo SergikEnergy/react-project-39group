@@ -1,3 +1,15 @@
+import {Logo} from "./Logo";
+import {StyledHeader} from "./styled/StyledHeader";
+
 export const Header = () => {
-  return <header>Here is a custom header</header>;
+    return (
+        <StyledHeader>
+            <header>
+                <Logo/>
+                <div>
+
+                </div>
+            </header>
+        </StyledHeader>)
 };
+

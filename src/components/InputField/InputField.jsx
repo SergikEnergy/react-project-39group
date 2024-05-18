@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Grid, Card, CardContent, Typography } from '@mui/material';
 import { fakeCard } from '../../data/fakeCard';
-import { useDebounce } from '../../hooks/index';
+import { useDebounce } from '../../hooks';
 
 export const InputField = () => {
   const [inputValue, setInputValue] = useState('');

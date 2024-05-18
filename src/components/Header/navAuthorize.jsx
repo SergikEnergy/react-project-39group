@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 export const NavAuthorize = ({logOut}) => {
   return (
     <>
+      {/*Дописать вывод никнейма пользователя*/}
       <Link to={APP_PATHS.HISTORY}>
         <Button variant="outlined">История</Button>
       </Link>

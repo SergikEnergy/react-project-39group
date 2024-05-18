@@ -1,4 +1,4 @@
-export const fakeData = [
+export const fakeCard = [
   {
     id: 1,
     title: 'Карточка 1 Lorem ipsum dolor s',

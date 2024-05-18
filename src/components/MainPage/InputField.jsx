@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { TextField, Grid, Card, CardContent, Typography } from '@mui/material';
-import { fakeData } from './fakeData';
-import { useDebounce } from '../../hooks/useDebounce';
+import { fakeCard } from '../../data/fakeCard';
+import { useDebounce } from '../../hooks/index';
 
-function InputField() {
+export const InputField = () => {
   const [inputValue, setInputValue] = useState('');
 
   const debouncedInputValue = useDebounce(inputValue, 500);
 
   const filteredData = debouncedInputValue
-    ? fakeData.filter((item) =>
+    ? fakeCard.filter((item) =>
         item.title.toLowerCase().includes(debouncedInputValue.toLowerCase()),
       )
-    : fakeData;
+    : fakeCard;
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -65,12 +65,10 @@ function InputField() {
       </Grid>
     </>
   );
-}
+};
 
-export default InputField;
-
-/* сделать кнопку, показать больше
-сделать Suggest и роутер
+//TODO сделать кнопку, показать больше
+/*сделать Suggest и роутер
 Сделать согласно ТЗ подсказки - при вводе в инпут можно показывать какие-то саджесты,
 например первых 5 результатов и при клике на саджест сразу перенаправлять пользователя на страницу с единицей информации.
 

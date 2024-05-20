@@ -2,18 +2,19 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (_env, argv) => {
   const isProdMode = argv.mode === 'production';
   const isDevMode = !isProdMode;
+  const dotenvFileName = isProdMode ? '.env.production' : '.env.development';
 
   return {
     entry: path.resolve(__dirname, 'src', 'index.js'),
     devtool: isDevMode && 'cheap-module-source-map',
     output: {
-      filename: 'bundle.js',
+      filename: isProdMode ? '[name].[contenthash].js' : 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/',
     },
     module: {
       rules: [
@@ -23,7 +24,6 @@ module.exports = (_env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }]],
               cacheDirectory: true,
               cacheCompression: false,
               envName: isProdMode ? 'production' : 'development',
@@ -35,8 +35,12 @@ module.exports = (_env, argv) => {
           exclude: /node_modules/,
           use: [
             isProdMode ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-            'sass-loader',
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
           ],
         },
         {
@@ -52,12 +56,16 @@ module.exports = (_env, argv) => {
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.scss', '.sass'],
     },
     plugins: [
+      new Dotenv({
+        path: dotenvFileName,
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),
+        favicon: './public/favIco.png',
       }),
       isProdMode &&
         new MiniCssExtractPlugin({
@@ -67,11 +75,14 @@ module.exports = (_env, argv) => {
     ],
 
     devServer: {
+      historyApiFallback: true,
       static: {
-        directory: path.join(__dirname, 'public'),
+        directory: path.join(__dirname, '/'),
       },
+      watchFiles: path.join(__dirname, 'src'),
       port: 3000,
       open: true,
+      hot: true,
     },
   };
 };

@@ -1,6 +1,8 @@
 import './MainPage.css';
-import { InputField } from '../../components/MainPage/InputField';
+import { CardList } from '../../components/Card_list/Card_list';
+// import { InputField } from '../../components/MainPage/InputField';
 
 export const MainPage = () => {
-  return <InputField />;
+  return <CardList/>
+  // return <InputField />;
 };

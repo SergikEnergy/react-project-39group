@@ -9,9 +9,9 @@ const rootElement = document.getElementById("root");
 
 createRoot(rootElement).render(
   <React.StrictMode>
-    <CssBaseline >
-    <App />
-  </CssBaseline >
-</React.StrictMode>
+    <CssBaseline>
+      <App />
+    </CssBaseline>
+  </React.StrictMode>
 )
 ;

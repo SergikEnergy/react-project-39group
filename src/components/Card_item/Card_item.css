@@ -1,0 +1,52 @@
+.card {
+  width: 300px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
+  position: relative;
+  transition: all .3s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 20px #9F0013;
+  transform: translateY(-8px);
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.more-button,
+.like-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.more-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.like-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.like-button.liked {
+  background-color: #dc3545;
+}

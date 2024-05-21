@@ -9,9 +9,9 @@ export const prepareHeaders = () => ({
 
 export const availableCategories = [
   { name: 'alexa-skills', value: 'alexa-skills' },
-  { name: 'alexa-skills', value: 'alexa-skills' },
   { name: 'amazon-devices', value: 'amazon-devices' },
   { name: 'amazonfresh', value: 'amazonfresh' },
   { name: 'appliances', value: 'appliances' },
   { name: 'automotive', value: 'automotive' },
+  { name: 'apps', value: 'apps' },
 ];

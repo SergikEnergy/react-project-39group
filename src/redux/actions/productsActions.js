@@ -1,8 +1,26 @@
-import { PRODUCTS_LOADING } from '../types';
-import { REST_API_KEY,REST_API_BASE_URL,REST_API_HOST, prepareHeaders } from '../api.data';
+import { prepareHeaders, REST_API_BASE_URL } from '../api.data';
+import { ERROR_GET_PRODUCTS, PRODUCTS_LOAD } from '../types';
 
-export const PRODUCTS_LOAD = (limit = undefined) => {
+export const getProducts = (keyword = 'a', category = 'aps') => {
   return async (dispatch) => {
-     await response=fetch(`${REST_API_BASE_URL}/products/`);
+    try {
+      const data = await fetch(
+        `${REST_API_BASE_URL}/products/search?keyword=${keyword}&category=${category}`,
+        {
+          headers: prepareHeaders(),
+          method: 'GET',
+        },
+      );
+      const response = await data.json();
+      dispatch({
+        type: PRODUCTS_LOAD,
+        payload: response,
+      });
+    } catch (err) {
+      dispatch({
+        type: ERROR_GET_PRODUCTS,
+        payload: err.message,
+      });
+    }
   };
 };

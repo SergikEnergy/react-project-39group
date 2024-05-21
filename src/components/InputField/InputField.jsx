@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { TextField, Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import { TextField, Grid, Card, CardContent, Typography, Button, CardMedia } from '@mui/material';
 import { fakeCard } from '../../data/fakeCard';
+import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 export const InputField = () => {
   const [inputValue, setInputValue] = useState('');
@@ -67,7 +70,7 @@ export const InputField = () => {
         container
         spacing={3}>
         {suggestions.length > 0 ? (
-          suggestions.slice(0, 10).map((item) => (
+          suggestions.slice(0, 15).map((item) => (
             <Grid
               item
               xs={12}
@@ -76,8 +79,20 @@ export const InputField = () => {
               lg={3}
               key={item.id}>
               <Card>
+              <CardMedia
+                component="img"
+                height="200"
+                image={item.imageUrl}
+                alt="Image"
+                />
+                <IconButton aria-label="like">
+                  <ThumbUpIcon />
+                </IconButton>
+                <IconButton aria-label="favorite">
+                  <FavoriteIcon />
+                </IconButton>
                 <CardContent>
-                  <Typography>{item.description}</Typography>
+                  <Typography>{item.title}</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -110,10 +125,9 @@ export const InputField = () => {
   );
 };
 
-//TODO сделать кнопку, показать больше
+//TODO
 /*сделать Suggest и роутер
-Сделать согласно ТЗ подсказки - при вводе в инпут можно показывать какие-то саджесты,
-например первых 5 результатов и при клике на саджест сразу перенаправлять пользователя на страницу с единицей информации.
+при клике на саджест сразу перенаправлять пользователя на страницу с единицей информации.
 
 Когда пользователь заполнил поле поиска и нажал Найти,
 можно перебросить пользователя на урл /search?queryParams,

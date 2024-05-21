@@ -1,12 +1,43 @@
 import React, { useState } from 'react';
-import { Typography, Paper, Button, FormControl, Input, InputLabel } from '@material-ui/core';
-import { Snackbar, Alert } from '@mui/material';
-import './SignUpPage.styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/index';
-import { emailValidationRegexp } from '../../data/emailValidation';
+import { Link } from 'react-router-dom';
+import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { Alert, Snackbar } from '@mui/material';
 
-export const SignUpPage = (props) => {
+import { emailValidationRegexp } from '../../data/emailValidation';
+import { auth } from '../../firebase/index';
+import { APP_PATHS } from '../../route/paths';
+
+const styles = (theme) => ({
+  main: {
+    width: 'auto',
+    display: 'block',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    marginTop: theme.spacing(3),
+  },
+});
+
+const SignUpPage = (props) => {
   const { classes } = props;
 
   const [email, setEmail] = useState('');
@@ -134,14 +165,16 @@ export const SignUpPage = (props) => {
             className={classes.submit}>
             Зарегистрироваться
           </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}>
-            Вернуться к логину
-          </Button>
+          <Link to={APP_PATHS.SIGN_IN}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submit}>
+              Вернуться к логину
+            </Button>
+          </Link>
           <Snackbar
             open={open}
             autoHideDuration={4000}
@@ -175,3 +208,5 @@ export const SignUpPage = (props) => {
     </main>
   );
 };
+
+export default withStyles(styles)(SignUpPage);

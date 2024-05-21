@@ -3,13 +3,13 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDMrPEzUWepwb0eyJl5wUcQHfVsdM8AMyE',
-  authDomain: 'react-intensieve-2024.firebaseapp.com',
-  databaseURL: 'https://react-intensieve-2024-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'react-intensieve-2024',
-  storageBucket: 'react-intensieve-2024.appspot.com',
-  messagingSenderId: '759191039885',
-  appId: '1:759191039885:web:caa9e5d855eeb3d00297c4',
+  apiKey: process.env.REACT_API_KEY,
+  authDomain: process.env.REACT_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_DATABASE_URL,
+  projectId: process.env.REACT_PROJECT_ID,
+  storageBucket: process.env.REACT_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);

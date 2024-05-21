@@ -1,51 +1,40 @@
 import React, { useState } from 'react';
 import { Typography, Paper, Button, FormControl, Input, InputLabel } from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { Snackbar, Alert } from '@mui/material';
+import './LoginPage.styles';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/index';
-
-const styles = (theme) => ({
-  main: {
-    width: 'auto',
-    display: 'block',
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    marginTop: theme.spacing(3),
-  },
-});
 
 export const LoginPage = (props) => {
   const { classes } = props;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('User logged');
+      setOpen(true);
     } catch (error) {
-      console.log(error.message);
+      setLoginError(true);
     }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleLoginError = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setLoginError(false);
   };
 
   return (
@@ -102,10 +91,32 @@ export const LoginPage = (props) => {
             className={classes.submit}>
             Регистрация
           </Button>
+          <Snackbar
+            open={open}
+            autoHideDuration={4000}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}>
+            <Alert severity="success">Вы успешно вошли в систему</Alert>
+          </Snackbar>
+          <Snackbar
+            open={loginError}
+            autoHideDuration={4000}
+            onClose={handleLoginError}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}>
+            <Alert
+              onClose={handleLoginError}
+              severity="error">
+              Неверно введён логин или пароль
+            </Alert>
+          </Snackbar>
         </form>
       </Paper>
     </main>
   );
 };
-
-export default withStyles(styles);

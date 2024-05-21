@@ -1,36 +1,10 @@
 import React, { useState } from 'react';
 import { Typography, Paper, Button, FormControl, Input, InputLabel } from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { Snackbar, Alert } from '@mui/material';
+import './SignUpPage.styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/index';
-
-const styles = (theme) => ({
-  main: {
-    width: 'auto',
-    display: 'block',
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    marginTop: theme.spacing(3),
-  },
-});
+import { emailValidationRegexp } from '../../data/emailValidation';
 
 export const SignUpPage = (props) => {
   const { classes } = props;
@@ -41,6 +15,8 @@ export const SignUpPage = (props) => {
   const [passwordOut, setPasswordOut] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [open, setOpen] = useState(false);
+  const [registrationError, setRegistrationError] = useState(false);
 
   const passwordHandler = (e) => {
     setPassword(e.target.value);
@@ -55,9 +31,7 @@ export const SignUpPage = (props) => {
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
-    const re =
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!re.test(String(e.target.value).toLowerCase())) {
+    if (!emailValidationRegexp.test(String(e.target.value).toLowerCase())) {
       setEmailError('Некорректный email');
     } else {
       setEmailError('');
@@ -79,12 +53,24 @@ export const SignUpPage = (props) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
-      console.log(user);
-      console.log('User Success');
+      setOpen(true);
     } catch (error) {
-      console.log(error.message);
+      setRegistrationError(true);
     }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleRegistrationError = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setRegistrationError(false);
   };
 
   return (
@@ -156,10 +142,36 @@ export const SignUpPage = (props) => {
             className={classes.submit}>
             Вернуться к логину
           </Button>
+          <Snackbar
+            open={open}
+            autoHideDuration={4000}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}>
+            <Alert
+              onClose={handleClose}
+              severity="success">
+              Вы успешно зарегистрировались
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            open={registrationError}
+            autoHideDuration={4000}
+            onClose={handleRegistrationError}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}>
+            <Alert
+              onClose={handleRegistrationError}
+              severity="error">
+              Ошибка регистрации
+            </Alert>
+          </Snackbar>
         </form>
       </Paper>
     </main>
   );
 };
-
-export default withStyles(styles);

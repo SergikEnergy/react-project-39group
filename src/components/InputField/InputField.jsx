@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { TextField, Grid, Card, CardContent, Typography, Button, CardMedia } from '@mui/material';
+import { SearchBar } from './SearchBar';
+import { SuggestionList } from './SuggestionList';
+import { SearchResults } from './SearchResults';
+import { NoFound } from './NoFound';
 import { fakeCard } from '../../data/fakeCard';
-import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 export const InputField = () => {
   const [inputValue, setInputValue] = useState('');
-  const [suggestions, setSuggestions] = useState(fakeCard); // переименовать
+  const [suggestions, setSuggestions] = useState(fakeCard);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
   const handleChange = (event) => {
@@ -33,7 +33,7 @@ export const InputField = () => {
       setSuggestions([]);
     } else {
       const resultCard = fakeCard.filter((item) =>
-        item.title.toLowerCase().includes(inputText.toLowerCase()),
+        item.title.toLowerCase().includes(inputText.toLowerCase())
       );
 
       setFilteredSuggestions([]);
@@ -49,78 +49,13 @@ export const InputField = () => {
 
   return (
     <>
-      <TextField
-        label="Введите название"
-        fullWidth
-        variant="outlined"
-        value={inputValue}
-        onChange={handleChange}
-      />
-      <Button
-        variant="contained"
-        onClick={searchChange}>
-        Поиск
-      </Button>
-      <ul>
-        {filteredSuggestions.map((suggestion, index) => (
-          <li key={index}>{suggestion.title}</li>
-        ))}
-      </ul>
-      <Grid
-        container
-        spacing={3}>
-        {suggestions.length > 0 ? (
-          suggestions.slice(0, 15).map((item) => (
-            <Grid
-              item
-              xs={12}
-              sm={5}
-              md={4}
-              lg={3}
-              key={item.id}>
-              <Card>
-              <CardMedia
-                component="img"
-                height="200"
-                image={item.imageUrl}
-                alt="Image"
-                />
-                <IconButton aria-label="like">
-                  <ThumbUpIcon />
-                </IconButton>
-                <IconButton aria-label="favorite">
-                  <FavoriteIcon />
-                </IconButton>
-                <CardContent>
-                  <Typography>{item.title}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))
-        ) : (
-          <>
-            <Grid
-              item
-              xs={12}>
-              <Card>
-                <Button
-                  variant="contained"
-                  onClick={handleReturn}>
-                  Вернуться
-                </Button>
-                <CardContent>
-                  <img
-                    // eslint-disable-next-line no-undef
-                    src={require('./167965-OVVF50-3.jpg').default}
-                    alt="Not Found"
-                    style={{ maxWidth: '100%' }}
-                  />
-                </CardContent>
-              </Card>
-            </Grid>
-          </>
-        )}
-      </Grid>
+      <SearchBar value={inputValue} onChange={handleChange} onSearch={searchChange} />
+      <SuggestionList suggestions={filteredSuggestions} />
+      {suggestions.length > 0 ? (
+        <SearchResults suggestions={suggestions} />
+      ) : (
+        <NoFound handleReturn={handleReturn} />
+      )}
     </>
   );
 };

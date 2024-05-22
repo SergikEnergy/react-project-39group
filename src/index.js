@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import CssBaseline from '@mui/material/CssBaseline';
 
-import { createRoot } from "react-dom/client";
-import { App } from "./App";
+import { store } from './redux/store';
+import { App } from './App';
 
-import CssBaseline from "@mui/material/CssBaseline";
-
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 
 createRoot(rootElement).render(
   <React.StrictMode>
-    <CssBaseline >
-    <App />
-  </CssBaseline >
-</React.StrictMode>
-)
-;
+    <Provider store={store}>
+      <CssBaseline>
+        <App />
+      </CssBaseline>
+    </Provider>
+  </React.StrictMode>,
+);

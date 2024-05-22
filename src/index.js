@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import CssBaseline from '@mui/material/CssBaseline';
 
-import { createRoot } from "react-dom/client";
-import { App } from "./App";
+import { AuthContextProvider } from '@/context/AuthContextProvider';
 
-import CssBaseline from "@mui/material/CssBaseline";
+import { App } from './App';
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 
 createRoot(rootElement).render(
   <React.StrictMode>
     <CssBaseline>
-      <App />
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
     </CssBaseline>
-  </React.StrictMode>
-)
-;
+  </React.StrictMode>,
+);

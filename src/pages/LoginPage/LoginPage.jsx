@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Alert, Snackbar } from '@mui/material';
 
 import { auth } from '../../firebase/index';
 import { APP_PATHS } from '../../route/paths';
+
+import { useAuthContext } from '@/hooks/useAuthContext';
 
 const styles = (theme) => ({
   main: {
@@ -44,11 +46,18 @@ const LoginPage = (props) => {
   const [open, setOpen] = useState(false);
   const [loginError, setLoginError] = useState(false);
 
+  const navigate = useNavigate();
+  const addAuthInfo = useAuthContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const data = await signInWithEmailAndPassword(auth, email, password);
       setOpen(true);
+      if (data) {
+        addAuthInfo.setUser(email);
+        navigate('/main');
+      }
     } catch (error) {
       setLoginError(true);
     }

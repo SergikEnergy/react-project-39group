@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Grid, Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Grid, TextField, Typography } from '@mui/material';
+
 import { fakeCard } from '../../data/fakeCard';
 import { useDebounce } from '../../hooks/index';
 
@@ -54,7 +55,9 @@ export const InputField = () => {
               <CardContent>
                 <img
                   // eslint-disable-next-line no-undef
-                  src={require('./167965-OVVF50-3.jpg').default}
+                  src={
+                    'https://w7.pngwing.com/pngs/336/743/png-transparent-error-404-404-error.png'
+                  }
                   alt="Not Found"
                   style={{ maxWidth: '100%' }}
                 />

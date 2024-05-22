@@ -1,13 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { APP_PATHS } from './paths';
-import { MainPage } from '../pages/MainPage';
-import { LoginPage } from '../pages/LoginPage';
-import { SignUpPage } from '../pages/SignUpPage';
-import { NotFoundPage } from '../pages/NotFoundPage';
-import { FavoritesPage } from '../pages/FavoritesPage';
-import { HistoryPage } from '../pages/HistoryPage';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from '../components/Layout';
+import { FavoritesPage } from '../pages/FavoritesPage';
+import { HistoryPage } from '../pages/HistoryPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import { MainPage } from '../pages/MainPage';
+import { NotFoundPage } from '../pages/NotFoundPage';
+import SignUpPage from '../pages/SignUpPage/SignUpPage';
+
+import { APP_PATHS } from './paths';
 
 export const routes = (
   <Routes>

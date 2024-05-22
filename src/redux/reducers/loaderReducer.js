@@ -8,7 +8,7 @@ export const loaderReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
 
     case STOP_PRODUCTS_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: false };
 
     default:
       return state;

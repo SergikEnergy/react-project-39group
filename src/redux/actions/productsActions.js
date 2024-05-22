@@ -6,9 +6,12 @@ import {
   SINGLE_PRODUCT_LOAD,
 } from '../types';
 
+import { startLoading, stopLoading } from './loaderActions';
+
 export const getProducts = (keyword = '') => {
   return async (dispatch) => {
     try {
+      dispatch(startLoading());
       const data = await fetch(
         `${keyword ? productsWithSearchUrl + `q=${keyword}` : allProductsUrl}`,
         {
@@ -32,6 +35,8 @@ export const getProducts = (keyword = '') => {
         type: ERROR_GET_PRODUCTS,
         payload: err.message,
       });
+    } finally {
+      dispatch(stopLoading());
     }
   };
 };
@@ -39,6 +44,7 @@ export const getProducts = (keyword = '') => {
 export const getProductById = (id) => {
   return async (dispatch) => {
     try {
+      dispatch(startLoading());
       const data = await fetch(`${singleProductUrl}/${id}`, {
         method: 'GET',
       });
@@ -59,6 +65,8 @@ export const getProductById = (id) => {
         type: ERROR_GET_SINGLE_PRODUCT,
         payload: err.message,
       });
+    } finally {
+      dispatch(stopLoading());
     }
   };
 };

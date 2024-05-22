@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { APP_PATHS } from '../../route/paths';
 import { Button } from '@mui/material';
+
+import { APP_PATHS } from '../../route/paths';
 
 export const NavNoAuthorize = () => {
   return (

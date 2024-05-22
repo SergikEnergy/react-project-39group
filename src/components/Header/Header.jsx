@@ -7,7 +7,6 @@ import { NavAuthorize } from './navAuthorize';
 import { NavNoAuthorize } from './navNoAuthorize';
 
 export const Header = () => {
-  // Ждем контекста, потом меняем на useContext
   const { userName } = useAuthContext();
   return (
     <StyledHeader>

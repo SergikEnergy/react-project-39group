@@ -1,17 +1,21 @@
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { getAuth } from 'firebase/auth';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
-import { APP_PATHS } from "../../route/paths";
-import { useAuthContext } from "@/hooks/useAuthContext";
-
+import { HelloMessage } from '@/components/Header/HelloMessage';
+import { useAuthContext } from '@/hooks/useAuthContext';
+import { APP_PATHS } from '@/route/paths';
 
 export const NavAuthorize = () => {
-  const { userName, setUser, logOutUser } = useAuthContext();
-
+  const { userName, logOutUser } = useAuthContext();
+  const auth = getAuth();
+  const handleLogOut = () => {
+    logOutUser();
+    auth.signOut();
+  };
   return (
     <>
-      {/*//Вытащить logOut из контекста*/}
-      {/*Дописать вывод никнейма пользователя*/}
+      <HelloMessage userName={userName} />
       <Link to={APP_PATHS.HISTORY}>
         <Button variant="outlined">История</Button>
       </Link>
@@ -20,8 +24,7 @@ export const NavAuthorize = () => {
       </Link>
       <Link to={APP_PATHS.MAIN_PAGE}>
         <Button
-          // вызываю doSignOut
-          onClick={logOutUser()}
+          onClick={handleLogOut}
           variant="outlined">
           Выход
         </Button>

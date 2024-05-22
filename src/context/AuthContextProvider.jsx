@@ -4,17 +4,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AuthContext } from '@/context/AuthContext';
 
 export const AuthContextProvider = (props) => {
-  const [userName, setUserName] = useState(' ');
+  const [userName, setUserName] = useState('');
   const auth = getAuth();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user && user.email) {
         setUserName(user.email);
-        console.log(user);
       } else {
-        setUserName(' ');
-        console.log('нет пользователя');
+        setUserName('');
       }
     });
   }, [auth]);
@@ -23,7 +21,7 @@ export const AuthContextProvider = (props) => {
     setUserName(name);
   };
   const logOutUser = () => {
-    setUserName(' ');
+    setUserName('');
   };
   const value = useMemo(() => {
     return {
@@ -33,5 +31,6 @@ export const AuthContextProvider = (props) => {
     };
   }, [userName]);
 
+  // eslint-disable-next-line react/prop-types
   return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;
 };

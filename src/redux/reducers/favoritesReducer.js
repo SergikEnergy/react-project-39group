@@ -5,7 +5,7 @@ const initialFavoritesState = {
 };
 
 export const favoritesReducer = (state = initialFavoritesState, action) => {
-  console.log(state, action);
+  console.log('favoritesReducer-->', state, action);
 
   switch (action.type) {
     default:

@@ -55,6 +55,7 @@
     "@mui/material": "^5.15.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@redux-devtools/extension": "^3.3.0",
+    "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "dotenv-webpack": "^8.1.0",
     "firebase": "^10.12.0",

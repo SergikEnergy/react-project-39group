@@ -1,20 +1,28 @@
-import { ERROR_GET_PRODUCTS, PRODUCTS_LOAD } from '../types';
+import { ERROR_GET_PRODUCTS, PRODUCTS_LOAD, SINGLE_PRODUCT_LOAD } from '../types';
 
 const initialProductsState = {
   products: [],
-  isLoadingProducts: false,
+  selectedProduct: {},
   error: null,
 };
 
 export const productsReducer = (state = initialProductsState, action) => {
-  console.log(state, action);
+  console.log('productsReducer--> ', state, action);
 
   switch (action.type) {
     case PRODUCTS_LOAD:
-      return { isLoadingProducts: false, error: null, products: [...action.payload] };
+      return { ...state, error: null, products: [...action.payload] };
+
+    case SINGLE_PRODUCT_LOAD: {
+      if (action.payload && action.payload.id) {
+        return { ...state, error: null, selectedProduct: action.payload };
+      } else {
+        return state;
+      }
+    }
 
     case ERROR_GET_PRODUCTS:
-      return { ...state, isLoadingProducts: false, error: action.payload };
+      return { ...state, error: action.payload };
 
     default:
       return state;

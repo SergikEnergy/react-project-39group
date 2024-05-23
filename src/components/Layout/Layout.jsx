@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "../Header";
+import { Outlet } from 'react-router-dom';
 
-import { StyledWrapper } from "./styled/StyledWrapper";
+import { Header } from '../Header';
+
+import { StyledWrapper } from './styled/StyledWrapper';
 
 export const Layout = () => {
   return (

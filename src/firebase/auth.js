@@ -10,5 +10,5 @@ export const doSignInUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const doSignOut = () => {
-  return signOut();
+  signOut(auth);
 };

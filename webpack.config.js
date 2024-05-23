@@ -16,7 +16,7 @@ module.exports = {
   target,
   output: {
     filename: devMode ? '[name].js' : '[name].[contenthash:8].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '/'),
     clean: true,
   },
   optimization: {

@@ -5,11 +5,11 @@ import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@mate
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Alert, Snackbar } from '@mui/material';
 
+import { useAuthContext } from '@/hooks/useAuthContext';
+
 import { emailValidationRegexp } from '../../data/emailValidation';
 import { auth } from '../../firebase/index';
 import { APP_PATHS } from '../../route/paths';
-
-import { useAuthContext } from '@/hooks/useAuthContext';
 
 const styles = (theme) => ({
   main: {
@@ -93,7 +93,7 @@ const SignUpPage = (props) => {
       setOpen(true);
       if (data) {
         addAuthInfo.setUser(email);
-        navigate('/main');
+        navigate('/');
       }
     } catch (error) {
       setRegistrationError(true);

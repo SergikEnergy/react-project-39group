@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Alert, Snackbar } from '@mui/material';
 
+import { useAuthContext } from '@/hooks/useAuthContext';
+
 import { auth } from '../../firebase/index';
 import { APP_PATHS } from '../../route/paths';
-
-import { useAuthContext } from '@/hooks/useAuthContext';
 
 const styles = (theme) => ({
   main: {
@@ -47,6 +47,7 @@ const LoginPage = (props) => {
   const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const addAuthInfo = useAuthContext();
 
   const handleSubmit = async (e) => {
@@ -56,7 +57,7 @@ const LoginPage = (props) => {
       setOpen(true);
       if (data) {
         addAuthInfo.setUser(email);
-        navigate('/main');
+        location.state?.from?.pathname ? navigate(location.state?.from?.pathname) : navigate('/');
       }
     } catch (error) {
       setLoginError(true);

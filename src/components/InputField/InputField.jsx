@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBar } from './SearchBar';
 import { SuggestionList } from './SuggestionList';
 import { SearchResults } from './SearchResults';
 import { NoFound } from './NoFound';
 import { fakeCard } from '../../data/fakeCard';
+import { useProductsSelector } from '../../redux/selectors';
+import { useDebounce } from '../../hooks';
+import { useDispatch } from 'react-redux';
+import { getProductsWithSearch } from '../../redux/actions/productsActions';
 
-export const InputField = ({product}) => {
+export const InputField = () => {
+  const dispatch = useDispatch();
+  const products = useProductsSelector(); // продукты 
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState(fakeCard);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  console.log(product)
+
+  const getProductsWithDebounce = () => {
+    dispatch(getProductsWithSearch(inputValue))
+  }
+
+  // const debounce = useDebounce(getProductsWithDebounce, 10000)
+  // console.log(debounce)
+
+  
   const handleChange = (event) => {
     const inputText = event.target.value;
     setInputValue(inputText);
-
+    
     if (inputText === '') {
       setFilteredSuggestions([]);
     } else {
@@ -24,6 +38,8 @@ export const InputField = ({product}) => {
       setFilteredSuggestions(filteredSuggestions);
     }
   };
+
+// Функция для 
 
   const searchChange = () => {
     const inputText = inputValue;
@@ -41,21 +57,15 @@ export const InputField = ({product}) => {
     }
   };
 
-  const handleReturn = () => {
-    setInputValue('');
-    setSuggestions(fakeCard);
-    setFilteredSuggestions([]);
-  };
-
   return (
     <>
       <SearchBar value={inputValue} onChange={handleChange} onSearch={searchChange} />
-      <SuggestionList suggestions={filteredSuggestions} inputValue={inputValue}/>
-      {suggestions.length > 0 ? (
+      {/* <SuggestionList suggestions={filteredSuggestions} inputValue={inputValue}/> */}
+      {/* {suggestions.length > 0 ? (
         <SearchResults suggestions={suggestions} />
       ) : (
-        <NoFound handleReturn={handleReturn} />
-      )}
+        <NoFound />
+      )} */}
     </>
   );
 };

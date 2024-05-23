@@ -4,7 +4,7 @@ import { useDebounce } from '../../hooks';
 export const SuggestionList = ({ suggestions, inputValue }) => {
     const debouncedSuggestions = useDebounce(suggestions, 2000);
     const debouncedInputValue = useDebounce(inputValue, 2000);
-
+// здесь не нужен debaunce
     return (
       <>
         <ul>

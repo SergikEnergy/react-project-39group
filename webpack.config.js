@@ -5,7 +5,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 const mode = process.env.NODE_ENV || 'development';
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode && 'source-map';

@@ -28,7 +28,7 @@ export const InputField = () => {
         value={inputValue}
         onChange={handleChange}
       />
-      <Grid
+      {/* <Grid
         container
         spacing={3}>
         {filteredData.length > 0 ? (
@@ -65,7 +65,7 @@ export const InputField = () => {
             </Card>
           </Grid>
         )}
-      </Grid>
+      </Grid> */}
     </>
   );
 };

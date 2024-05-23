@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import CardItem from './CardItem';
+import { CardItem } from './CardItem';
 
 export const SearchResults = ({ suggestions }) => {
   return (

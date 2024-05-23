@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button, CardContent } from '@mui/material';
+import { Grid } from '@material-ui/core';
 
 export const NoFound = ({ handleReturn }) => {
   return (

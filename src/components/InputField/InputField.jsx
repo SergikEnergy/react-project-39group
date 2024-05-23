@@ -5,11 +5,11 @@ import { SearchResults } from './SearchResults';
 import { NoFound } from './NoFound';
 import { fakeCard } from '../../data/fakeCard';
 
-export const InputField = () => {
+export const InputField = ({product}) => {
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState(fakeCard);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-
+  console.log(product)
   const handleChange = (event) => {
     const inputText = event.target.value;
     setInputValue(inputText);
@@ -50,7 +50,7 @@ export const InputField = () => {
   return (
     <>
       <SearchBar value={inputValue} onChange={handleChange} onSearch={searchChange} />
-      <SuggestionList suggestions={filteredSuggestions} />
+      <SuggestionList suggestions={filteredSuggestions} inputValue={inputValue}/>
       {suggestions.length > 0 ? (
         <SearchResults suggestions={suggestions} />
       ) : (

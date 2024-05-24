@@ -1,4 +1,9 @@
-import { ERROR_GET_PRODUCTS, PRODUCTS_LOAD, SINGLE_PRODUCT_LOAD, SET_SUGGESTIONS } from '../types';
+import {
+  ERROR_GET_PRODUCTS,
+  ERROR_GET_SINGLE_PRODUCT,
+  PRODUCTS_LOAD,
+  SINGLE_PRODUCT_LOAD,
+} from '../types';
 
 const initialProductsState = {
   products: [],
@@ -8,8 +13,6 @@ const initialProductsState = {
 };
 
 export const productsReducer = (state = initialProductsState, action) => {
-  console.log('productsReducer--> ', state, action);
-
   switch (action.type) {
     case PRODUCTS_LOAD:
       return { ...state, error: null, products: [...action.payload] };
@@ -29,6 +32,9 @@ export const productsReducer = (state = initialProductsState, action) => {
     }
 
     case ERROR_GET_PRODUCTS:
+      return { ...state, error: action.payload };
+
+    case ERROR_GET_SINGLE_PRODUCT:
       return { ...state, error: action.payload };
 
     default:

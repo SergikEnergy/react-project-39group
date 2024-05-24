@@ -1,0 +1,95 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.product__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #eecfba, #c5dde8);
+}
+
+.product_slider {
+  flex: 0 0 60%;
+  /* max-height: 400px; */
+  background-color: #f9f9f9;
+}
+
+.product__info {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product__title {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product__description {
+  margin: 10px 0;
+  font-size: 16px;
+  color: black;
+}
+
+.product__prices {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #555;
+  margin: 10px 0;
+}
+
+.prod_price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
+  span {
+    color: #dc3545;
+  }
+}
+
+.prod_discount {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: underline;
+  span {
+    color: #28a745;
+  }
+}
+
+.product__rating {
+  margin: 10px 0;
+  font-size: 18px;
+  span {
+    color: #ffb400;
+  }
+}
+
+.product__btnBack {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 25%;
+  padding: 3px;
+  font-weight: bold;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 3px 3px 8px #b9abab;
+  background-color: #e45454;
+}
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  object-fit: cover;
+  max-height: 260px;
+}

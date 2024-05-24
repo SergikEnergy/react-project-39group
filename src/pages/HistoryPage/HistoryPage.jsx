@@ -1,3 +1,5 @@
+import { StyledTitle } from '../../components/History/styled/StyledTitle';
+
 export const HistoryPage = () => {
-  return <div>This is a history page</div>;
+  return <StyledTitle>История</StyledTitle>;
 };

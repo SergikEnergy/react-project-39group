@@ -6,7 +6,6 @@ import { CustomLoader } from '../../components/CustomLoader';
 import { InputField } from '../../components/InputField';
 import { getProducts } from '../../redux/actions/productsActions';
 import { useLoaderSelector} from '../../redux/selectors';
-import { CardList } from '../../components/CardList/CardList';
 
 import './MainPage.css';
 

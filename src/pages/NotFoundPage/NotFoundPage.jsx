@@ -1,10 +1,8 @@
 import React from 'react';
-import { Card, Button, CardContent } from '@mui/material';
-import { Grid } from '@material-ui/core';
+import { Card, CardContent } from '@mui/material';
 
 export const NotFoundPage = () => {
   return (
-    <Grid item xs={12}>
     <Card>
       <CardContent>
         <img
@@ -14,6 +12,5 @@ export const NotFoundPage = () => {
         />
       </CardContent>
     </Card>
-  </Grid>
   )
 };

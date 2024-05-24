@@ -7,8 +7,6 @@ const initialProductsState = {
 };
 
 export const productsReducer = (state = initialProductsState, action) => {
-  console.log('productsReducer--> ', state, action);
-
   switch (action.type) {
     case PRODUCTS_LOAD:
       return { ...state, error: null, products: [...action.payload] };

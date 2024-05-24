@@ -4,16 +4,17 @@ import {
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
   SINGLE_PRODUCT_LOAD,
+  SET_SUGGESTIONS
 } from '../types';
 
 import { startLoading, stopLoading } from './loaderActions';
 
-export const getProducts = (keyword = '') => {
+export const getProductsWithSearch = (keyword = '') => {
   return async (dispatch) => {
     try {
       dispatch(startLoading());
       const data = await fetch(
-        `${keyword ? productsWithSearchUrl + `q=${keyword}` : allProductsUrl}`,
+        `${productsWithSearchUrl}&q=${keyword}`,
         {
           method: 'GET',
         },
@@ -63,6 +64,51 @@ export const getProductById = (id) => {
     } catch (err) {
       dispatch({
         type: ERROR_GET_SINGLE_PRODUCT,
+        payload: err.message,
+      });
+    } finally {
+      dispatch(stopLoading());
+    }
+  };
+};
+
+export const updateSuggestions = (suggestion) => {
+  return {
+    type: SET_SUGGESTIONS,
+    payload: suggestion,
+  }
+}
+
+export const getInitialProducts = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(startLoading());
+      const data = await fetch(
+        `${ allProductsUrl }`,
+        {
+          method: 'GET',
+        },
+      );
+      if (!data.ok) {
+        dispatch({
+          type: ERROR_GET_PRODUCTS,
+          payload: 'Ошибка получения данных от сервера',
+        });
+      } else {
+        const response = await data.json();
+        dispatch({
+          type: PRODUCTS_LOAD,
+          payload: response.products,
+        });
+        const titles = response.products.map((item)=>({
+          label: item.title,
+          id: item.id,
+        }))
+        dispatch(updateSuggestions(titles));
+      }
+    } catch (err) {
+      dispatch({
+        type: ERROR_GET_PRODUCTS,
         payload: err.message,
       });
     } finally {

@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {APP_PATHS} from "../../route/paths"
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {addToFavorits, removeFromFavorits} from "../../redux/actions"
+import {useFavoritesSelector} from '../../redux/selectors';
 import './CardItem.css';
 
 export const CardItem = (props) => {
   const { title, price, thumbnail, id } = props;
+  const {favoritesProducts} = useFavoritesSelector();
+  const isLiked = favoritesProducts.some(item => item.id === id);
 
-  // TODO Вытянуть масив favorits из редакса
-  // Проверить есть ли в редаксе такая карточка (по title и description) если есть filter => в use.state передать initial true
+  const location = useLocation();
+  // TODO 
+  // Проверить есть ли в редаксе такая карточка (по id) some 
 
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(isLiked);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,7 +33,7 @@ export const CardItem = (props) => {
   }
   
   const handleMore = () => {
-    navigate(APP_PATHS.CARDPAGE)
+    navigate(`/card/${id}`, {state: location.pathname})
   }
 
   return (

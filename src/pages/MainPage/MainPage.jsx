@@ -6,7 +6,6 @@ import { InputField } from '../../components/InputField';
 import { getProducts } from '../../redux/actions/productsActions';
 import { useLoaderSelector} from '../../redux/selectors';
 import { CardList } from '../../components/CardList/CardList';
-import { ProductInfo } from '../../components/ProductInfo/ProductInfo';
 
 import './MainPage.css';
 
@@ -20,8 +19,7 @@ export const MainPage = () => {
   return (
     <>
       <InputField />
-      <ProductInfo/>
-      {/* <CardList/> */}
+      <CardList/>
       {isLoading && <CustomLoader />}
     </>
   );

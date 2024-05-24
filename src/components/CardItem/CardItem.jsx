@@ -1,83 +1,52 @@
 import { useState } from "react";
-import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import {APP_PATHS} from "../../route/paths"
+import { useDispatch } from "react-redux";
+import {addToFavorits, removeFromFavorits} from "../../redux/actions"
+import './CardItem.css';
 
-const Card = styled.ul`
-  padding: 0;
-  width: 300px;
-  height: 400px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px;
-  position: relative;
-  background: ${props => `url(${props.thumbnail}) center/cover no-repeat`};
-  h3 {
-    font-size: 18px;
-  }
-`;
+export const CardItem = (props) => {
+  const { title, price, thumbnail, id } = props;
 
-const CardContent = styled.div`
-  position: absolute;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  // TODO Вытянуть масив favorits из редакса
+  // Проверить есть ли в редаксе такая карточка (по title и description) если есть filter => в use.state передать initial true
 
-  .more-button,
-  .like-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-  }
-
-  .more-button:hover,
-  .like-button:hover {
-    box-shadow: 0 5px 20px rgba(159, 0, 19, 0.5);
-    transform: scale(1.05);
-  }
-
-  .more-button {
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-  }
-
-  .like-button {
-    background-color: #28a745;
-    color: white;
-  }
-
-  .like-button.liked {
-    background-color: #dc3545;
-  }
-`;
-
-export const CardItem = ({ title, price, thumbnail }) => {
   const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLike = () => {
-    setLiked(!liked);
+  const toggleLike = () => {
+    setLiked(state => !state);
   };
 
+  const handleLikeClick = () => {
+    toggleLike();
+    dispatch(addToFavorits(props));
+  }
+
+  const handleDislikeClick = () => {
+    toggleLike();
+    dispatch(removeFromFavorits(id))
+  }
+  
+  const handleMore = () => {
+    navigate(APP_PATHS.CARDPAGE)
+  }
+
   return (
-    <Card thumbnail={thumbnail}>
-      <CardContent>
+    <div className="card" style={{background: `url(${thumbnail}) center/cover no-repeat`}}>
+      <div className="card__content">
         <h3>{title}</h3>
         <p>{price} $</p>
-        <button className="more-button">Подробнее</button>
+        <button 
+          className="more-button"
+          onClick={handleMore}>Подробнее</button>
         <button
           className={`like-button ${liked ? 'liked' : ''}`}
-          onClick={handleLike}
-        >
-          {liked ? 'Liked' : 'Like'}
+          onClick={liked ? handleDislikeClick : handleLikeClick}>
+          {liked ? 'Dislike' : 'Like'}
         </button>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

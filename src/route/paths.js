@@ -6,5 +6,6 @@ export const APP_PATHS = {
   FAVORITES: '/favorites',
   HISTORY: '/history',
   NOT_FOUND: '/not-found',
+  CARDPAGE: '/card/card:id',
   OTHER: '*',
 };

@@ -7,7 +7,6 @@ import { getInitialProducts } from '../../redux/actions/productsActions';
 import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
 import { Button } from '@mui/material';
 import { getProducts } from '../../redux/actions/productsActions';
-import { useLoaderSelector} from '../../redux/selectors';
 import { CardList } from '../../components/CardList/CardList';
 import { ProductInfo } from '../../components/ProductInfo/ProductInfo';
 
@@ -34,7 +33,7 @@ export const MainPage = () => {
       <ProductInfo/>
       {/* <CardList/> */}
       {isLoading && <CustomLoader />}
-      {/* { isCardsListShowed && <CardList /> } // Добвать CardList  */}
+      { isCardsListShowed && <CardList /> }
       { isErrorShowed && <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>'Ошибка'</div>}
       { isEmptyShowed && <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>Ничего не найдено!</div>}
     </>

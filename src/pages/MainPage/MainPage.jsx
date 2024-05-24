@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { CardList } from '../../components/CardList/CardList';
 import { CustomLoader } from '../../components/CustomLoader';
 import { InputField } from '../../components/InputField';
 import { getProducts } from '../../redux/actions/productsActions';
@@ -23,4 +24,4 @@ export const MainPage = () => {
       {isLoading && <CustomLoader />}
     </>
   );
-}
+};

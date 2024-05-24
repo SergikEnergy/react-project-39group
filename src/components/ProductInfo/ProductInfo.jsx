@@ -17,6 +17,7 @@ export const ProductInfo = () => {
     original: image,
     thumbnail: image,
   }));
+  console.log(imageGalleryItems);
 
   return (
       <div className="product__wrapper">

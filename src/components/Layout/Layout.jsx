@@ -1,14 +1,19 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "../Header";
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { StyledWrapper } from "./styled/StyledWrapper";
+import { CustomLoader } from '../CustomLoader';
+import { Header } from '../Header';
+
+import { StyledWrapper } from './styled/StyledWrapper';
 
 export const Layout = () => {
   return (
     <>
       <Header />
       <StyledWrapper>
-        <Outlet />
+        <Suspense fallback={<CustomLoader />}>
+          <Outlet />
+        </Suspense>
       </StyledWrapper>
     </>
   );

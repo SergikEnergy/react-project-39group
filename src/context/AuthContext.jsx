@@ -1,7 +1,9 @@
 import { createContext } from 'react';
 
+import { userKeyLocalStorage } from '../data/userKeyLocalStorage';
+
 const initialContext = {
-  userName: '',
+  userName: localStorage.getItem(userKeyLocalStorage) || '',
   setUser: (name) => {},
   logOutUser: () => {},
 };

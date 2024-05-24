@@ -15,8 +15,8 @@ module.exports = {
   devtool,
   target,
   output: {
-    filename: devMode ? '[name].js' : '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: devMode ? '[name].js' : '[name].[contenthash:8].js',
+    path: path.resolve(__dirname, '/'),
     clean: true,
   },
   optimization: {
@@ -52,9 +52,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              esModule: true,
-              importLoaders: 1,
-              modules: true,
+              sourceMap: devMode,
             },
           },
           {
@@ -67,6 +65,7 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
+            options: { sourceMap: devMode },
           },
         ],
       },
@@ -91,8 +90,8 @@ module.exports = {
       favicon: './public/favIco.png',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+      filename: devMode ? '[name].css' : '[name].[contenthash:8].css',
+      chunkFilename: devMode ? '[name].chunk.css' : '[name].[contenthash:8].chunk.css',
     }),
   ],
   devServer: {

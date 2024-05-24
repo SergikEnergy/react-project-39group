@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
 
 import { CardList } from '../../components/CardList/CardList';
 import { CustomLoader } from '../../components/CustomLoader';
@@ -8,7 +7,7 @@ import { InputField } from '../../components/InputField';
 import { ProductInfo } from '../../components/ProductInfo/ProductInfo';
 import { getInitialProducts } from '../../redux/actions/productsActions';
 import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
-import { NotFoundPage } from '../NotFoundPage'
+import { NotFoundPage } from '../NotFoundPage';
 
 import './MainPage.css';
 
@@ -27,18 +26,11 @@ export const MainPage = () => {
   return (
     <>
       <InputField />
-      <Button
-        variant="contained"
-        style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
-        Поиск
-      </Button>
       <ProductInfo />
       {/* <CardList/> */}
       {isLoading && <CustomLoader />}
       {isCardsListShowed && <CardList />}
-      {isErrorShowed && (
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>'Ошибка'</div>
-      )}
+      {isErrorShowed && <NotFoundPage />}
       {isEmptyShowed && (
         <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
           Ничего не найдено!
@@ -46,4 +38,4 @@ export const MainPage = () => {
       )}
     </>
   );
-}
+};

@@ -1,8 +1,26 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { CardList } from '../../components/CardList/CardList';
+import { CustomLoader } from '../../components/CustomLoader';
+import { InputField } from '../../components/InputField';
+import { getProducts } from '../../redux/actions/productsActions';
+import { useLoaderSelector} from '../../redux/selectors';
+
 import './MainPage.css';
-import { CardList } from '../../components/Card_list/Card_list';
-// import { InputField } from '../../components/MainPage/InputField';
 
 export const MainPage = () => {
-  return <CardList/>
-  // return <InputField />;
+  const dispatch = useDispatch();
+  const { isLoading } = useLoaderSelector();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  return (
+    <>
+      <InputField />
+      <CardList/>
+      {isLoading && <CustomLoader />}
+    </>
+  );
 };

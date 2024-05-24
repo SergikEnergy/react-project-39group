@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Alert, Snackbar } from '@mui/material';
+
+import { useAuthContext } from '@/hooks/useAuthContext';
 
 import { emailValidationRegexp } from '../../data/emailValidation';
 import { auth } from '../../firebase/index';
@@ -49,6 +52,9 @@ const SignUpPage = (props) => {
   const [open, setOpen] = useState(false);
   const [registrationError, setRegistrationError] = useState(false);
 
+  const navigate = useNavigate();
+  const addAuthInfo = useAuthContext();
+
   const passwordHandler = (e) => {
     setPassword(e.target.value);
     if (e.target.value.length < 6) {
@@ -82,9 +88,14 @@ const SignUpPage = (props) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const data = await createUserWithEmailAndPassword(auth, email, password);
       setOpen(true);
+      if (data) {
+        addAuthInfo.setUser(email);
+        navigate('/');
+      }
     } catch (error) {
       setRegistrationError(true);
     }

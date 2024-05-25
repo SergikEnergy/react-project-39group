@@ -1,24 +1,26 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
+@import '~react-image-gallery/styles/css/image-gallery.css';
 
 .product__wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   margin: 20px;
   width: 100%;
   max-width: 800px;
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
+  min-height: 500px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   background: linear-gradient(45deg, #eecfba, #c5dde8);
 }
 
 .product_slider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 0 0 60%;
-  /* max-height: 400px; */
+  overflow: hidden;
   background-color: #f9f9f9;
 }
 
@@ -53,43 +55,61 @@
   font-size: 20px;
   font-weight: bold;
   margin-right: 10px;
-  span {
-    color: #dc3545;
-  }
+}
+
+.prod_price span {
+  color: #dc3545;
 }
 
 .prod_discount {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-decoration: underline;
-  span {
-    color: #28a745;
-  }
+}
+.prod_discount span {
+  color: #28a745;
 }
 
 .product__rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px 0;
-  font-size: 18px;
-  span {
-    color: #ffb400;
-  }
+  font-size: 20px;
+}
+.product__rating span {
+  color: #ffb400;
 }
 
 .product__btnBack {
   margin-top: auto;
   align-self: flex-end;
   width: 25%;
-  padding: 3px;
+  font-size: 18px;
+  padding: 5px;
   font-weight: bold;
   border-radius: 25px;
   color: white;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
   box-shadow: 3px 3px 8px #b9abab;
-  background-color: #e45454;
+  transition: all 0.5s ease-in-out;
+  background: linear-gradient(180deg, #f05205, #ff9600, #ffd000);
+}
+
+.product__btnBack:hover {
+  transform: scale(1.07);
+  background: #e72424;
 }
 
 .image-gallery-content .image-gallery-slide .image-gallery-image {
   object-fit: cover;
-  max-height: 260px;
+  max-height: 350px;
+  margin-bottom: 30px;
+}
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  max-height: 92px;
+  object-fit: contain;
 }

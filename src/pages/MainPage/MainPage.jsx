@@ -3,34 +3,35 @@ import { useDispatch } from 'react-redux';
 
 import { CardList } from '../../components/CardList/CardList';
 import { CustomLoader } from '../../components/CustomLoader';
-import { InputField } from '../../components/InputField';
-import { ProductInfo } from '../../components/ProductInfo/ProductInfo';
+import { SearchBar } from '../../components/SearchBar';
 import { getInitialProducts } from '../../redux/actions/productsActions';
 import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
-import { NotFoundPage } from '../NotFoundPage';
 
 import './MainPage.css';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
-  const products = useProductsSelector();
+  const { products, error } = useProductsSelector();
   const { isLoading } = useLoaderSelector();
 
-  const isCardsListShowed = !isLoading && !products.error & (products.products.length !== 0);
-  const isErrorShowed = !isLoading && !products.error;
-  const isEmptyShowed = !isLoading && !products.error & (products.products.length === 0);
+  const isCardsListShowed = !isLoading && !error && products.length !== 0;
+  const isErrorShowed = !isLoading && error;
+  const isEmptyShowed = !isLoading && !error && products.length === 0;
+
   useEffect(() => {
     dispatch(getInitialProducts());
   }, [dispatch]);
 
   return (
     <>
-      <InputField />
-      <ProductInfo />
-      {/* <CardList/> */}
+      <SearchBar />
       {isLoading && <CustomLoader />}
       {isCardsListShowed && <CardList />}
-      {isErrorShowed && <NotFoundPage />}
+      {isErrorShowed && (
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+          Ошибка получения данных о товарах. Пожалуйста, попробуйте повторить запрос позже!
+        </div>
+      )}
       {isEmptyShowed && (
         <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
           Ничего не найдено!

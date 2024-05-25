@@ -3,8 +3,9 @@ import {
   ERROR_GET_PRODUCTS,
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
+  SET_SEARCH_TERM,
+  SET_SUGGESTIONS,
   SINGLE_PRODUCT_LOAD,
-  SET_SUGGESTIONS
 } from '../types';
 
 import { startLoading, stopLoading } from './loaderActions';
@@ -13,12 +14,9 @@ export const getProductsWithSearch = (keyword = '') => {
   return async (dispatch) => {
     try {
       dispatch(startLoading());
-      const data = await fetch(
-        `${productsWithSearchUrl}&q=${keyword}`,
-        {
-          method: 'GET',
-        },
-      );
+      const data = await fetch(`${productsWithSearchUrl}&q=${keyword}`, {
+        method: 'GET',
+      });
       if (!data.ok) {
         dispatch({
           type: ERROR_GET_PRODUCTS,
@@ -76,19 +74,16 @@ export const updateSuggestions = (suggestion) => {
   return {
     type: SET_SUGGESTIONS,
     payload: suggestion,
-  }
-}
+  };
+};
 
 export const getInitialProducts = () => {
   return async (dispatch) => {
     try {
       dispatch(startLoading());
-      const data = await fetch(
-        `${ allProductsUrl }`,
-        {
-          method: 'GET',
-        },
-      );
+      const data = await fetch(`${allProductsUrl}`, {
+        method: 'GET',
+      });
       if (!data.ok) {
         dispatch({
           type: ERROR_GET_PRODUCTS,
@@ -100,10 +95,10 @@ export const getInitialProducts = () => {
           type: PRODUCTS_LOAD,
           payload: response.products,
         });
-        const titles = response.products.map((item)=>({
+        const titles = response.products.map((item) => ({
           label: item.title,
           id: item.id,
-        }))
+        }));
         dispatch(updateSuggestions(titles));
       }
     } catch (err) {
@@ -116,3 +111,8 @@ export const getInitialProducts = () => {
     }
   };
 };
+
+export const setSearchProducts = (searchProducts) => ({
+  type: SET_SEARCH_TERM,
+  payload: searchProducts,
+});

@@ -1,16 +1,15 @@
-import { LAST_TEN_HISTORY, SAVE_HISTORY_TO_LOCALE_STORAGE, SAVE_TO_HISTORY } from '../types';
+import { lastTen } from '@/utils/lastTen';
 
-const initialHistoryState = { historyQueries: [] };
+import { SAVE_TO_HISTORY } from '../types';
+
+const initialHistoryState = { history: [] };
 
 export const historyReducer = (state = initialHistoryState, action) => {
   switch (action.type) {
-    case SAVE_HISTORY_TO_LOCALE_STORAGE: {
-      return {};
+    case SAVE_TO_HISTORY: {
+      localStorage.setItem('history', lastTen(state.history, action.payload));
+      return { ...state, history: lastTen(state.history, action.payload) };
     }
-    case SAVE_TO_HISTORY:
-      return { ...state, historyQueries: state.historyQueries.push(action.payload) };
-    case LAST_TEN_HISTORY:
-      return {};
     default:
       return state;
   }

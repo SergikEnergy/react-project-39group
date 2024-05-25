@@ -7,7 +7,8 @@ import { saveToHistory } from '@/redux/actions';
 
 import { useProductsSelector } from '../../redux/selectors';
 
-export const SearchBar = () => {
+// eslint-disable-next-line react/prop-types
+export const SearchBar = ({ searchInitialValue }) => {
   const products = useProductsSelector();
   const options = products.suggestions.map((item) => item.label);
 
@@ -19,6 +20,7 @@ export const SearchBar = () => {
 
   return (
     <Autocomplete
+      defaultValue={searchInitialValue || ''}
       options={options}
       renderInput={(params) => (
         <TextField

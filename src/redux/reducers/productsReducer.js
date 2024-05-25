@@ -2,6 +2,7 @@ import {
   ERROR_GET_PRODUCTS,
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
+  SET_SUGGESTIONS,
   SINGLE_PRODUCT_LOAD,
 } from '../types';
 
@@ -9,7 +10,7 @@ const initialProductsState = {
   products: [],
   suggestions: [],
   error: null,
-  selectedProduct: {}
+  selectedProduct: {},
 };
 
 export const productsReducer = (state = initialProductsState, action) => {

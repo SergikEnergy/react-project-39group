@@ -1,30 +1,26 @@
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import { useSelector } from "react-redux";
 import './ProductInfo.css'
 
-
 export const ProductInfo = () => {
-  const products = useSelector(({products}) => {
-    return products.products
-  });
-  const product = products[0];
+  const {title, description, price, discountPercentage, rating, images} = useSelector(({products}) => products.selectedProduct);
 
-  return (
-    <div className="product__wrapper">
-     {product && <View {...product} />}
-    </div>
-  )
-}
+  const location = useLocation();
+  const navigate = useNavigate();
 
-const View = ({title, description, price, discountPercentage, rating, images }) => {
+  const handleBackClick = () => {
+    navigate(location.state ?? '/')
+  }
+
   const imageGalleryItems = images.map(image => ({
     original: image,
     thumbnail: image,
   }));
+  console.log(imageGalleryItems);
 
   return (
-      <>
+      <div className="product__wrapper">
         <div className="product_slider">
         <ImageGallery 
         items={imageGalleryItems}
@@ -50,8 +46,8 @@ const View = ({title, description, price, discountPercentage, rating, images }) 
           <div className="product__rating">Средний рейтинг товара: 
             <span> {rating}</span>
           </div>
-          <Link to="/product" className="product__btnBack">Назад</Link>
+          <button onClick={handleBackClick} className="product__btnBack">Назад</button>
         </div>
-      </>
+      </div>
   )
 }

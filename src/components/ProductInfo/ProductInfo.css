@@ -1,18 +1,16 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
+@import '~react-image-gallery/styles/css/image-gallery.css';
 
 .product__wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   margin: 20px;
   width: 100%;
-  max-width: 900px;
-  min-height: 550px;
+  max-width: 800px;
+  min-height: 500px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   background: linear-gradient(45deg, #eecfba, #c5dde8);
 }
@@ -96,8 +94,8 @@
   text-align: center;
   cursor: pointer;
   box-shadow: 3px 3px 8px #b9abab;
-  transition: all .5s ease-in-out;
-  background: linear-gradient(180deg, #f05205,#ff9600,#ffd000);
+  transition: all 0.5s ease-in-out;
+  background: linear-gradient(180deg, #f05205, #ff9600, #ffd000);
 }
 
 .product__btnBack:hover {

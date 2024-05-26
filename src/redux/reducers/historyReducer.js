@@ -7,8 +7,10 @@ const initialHistoryState = { history: [] };
 export const historyReducer = (state = initialHistoryState, action) => {
   switch (action.type) {
     case SAVE_TO_HISTORY: {
-      localStorage.setItem('history', lastTen(state.history, action.payload));
-      return { ...state, history: lastTen(state.history, action.payload) };
+      let history = state.history;
+      let lastTenArr = lastTen(history, action.payload);
+      localStorage.setItem('history', lastTenArr);
+      return { ...state, history: lastTenArr };
     }
     default:
       return state;

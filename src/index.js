@@ -8,6 +8,8 @@ import { AuthContextProvider } from '@/context/AuthContextProvider';
 import { store } from './redux/store';
 import { App } from './App';
 
+import './index.css';
+
 const rootElement = document.getElementById('root');
 
 createRoot(rootElement).render(

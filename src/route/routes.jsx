@@ -64,7 +64,7 @@ export const routes = (
       element={
         <Navigate
           to={APP_PATHS.NOT_FOUND}
-          replace
+          replace={true}
         />
       }
     />
@@ -77,7 +77,7 @@ export const routes = (
       element={
         <Navigate
           to={APP_PATHS.NOT_FOUND}
-          replace
+          replace={true}
         />
       }
     />

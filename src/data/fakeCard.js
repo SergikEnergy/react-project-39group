@@ -1,152 +1,123 @@
-export const fakeCard = [
+export const fakeCard =  [
   {
-    id: 1,
-    title: 'Карточка 1 Lorem ipsum dolor s',
-    description: 'Описание карточки 1 Lorem ipsum',
+      title: "Природный пейзаж",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 2,
-    title: 'Карточка 2 Lorem ipsum dolor s',
-    description: 'Описание карточки 2 Lorem ipsum',
+      title: "Городской вид",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 3,
-    title: 'Карточка 3 Lorem ipsum dolor s',
-    description: 'Описание карточки 3 Lorem ipsum',
+      title: "Абстрактное искусство",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 4,
-    title: 'Карточка 4 Lorem ipsum dolor s',
-    description: 'Описание карточки 4 Lorem ipsum',
+      title: "Закат на пляже",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 5,
-    title: 'Карточка 5 Lorem ipsum dolor s',
-    description: 'Описание карточки 5 Lorem ipsum',
+      title: "Цветочное поле",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 6,
-    title: 'Карточка 6 Lorem ipsum dolor s',
-    description: 'Описание карточки 6 Lorem ipsum',
+      title: "Горные вершины",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 7,
-    title: 'Карточка 7 Lorem ipsum dolor s',
-    description: 'Описание карточки 7 Lorem ipsum',
+      title: "Городской закат",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 8,
-    title: 'Карточка 8 Lorem ipsum dolor s',
-    description: 'Описание карточки 8 Lorem ipsum',
+      title: "Архитектурные детали",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 9,
-    title: 'Карточка 9 Lorem ipsum dolor s',
-    description: 'Описание карточки 9 Lorem ipsum',
+      title: "Лесная тропинка",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 10,
-    title: 'Карточка 10 Lorem ipsum dolor s',
-    description: 'Описание карточки 10 Lorem ipsum',
+      title: "Морской бриз",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 11,
-    title: 'Карточка 11 Lorem ipsum dolor s',
-    description: 'Описание карточки 11 Lorem ipsum',
+      title: "Интерьер дома",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 12,
-    title: 'Карточка 12 Lorem ipsum dolor s',
-    description: 'Описание карточки 12 Lorem ipsum',
+      title: "Граффити на стене",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 13,
-    title: 'Карточка 13 Lorem ipsum dolor s',
-    description: 'Описание карточки 13 Lorem ipsum',
+      title: "Подводный мир",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 14,
-    title: 'Карточка 14 Lorem ipsum dolor s',
-    description: 'Описание карточки 14 Lorem ipsum',
+      title: "Заснеженные горы",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 15,
-    title: 'Карточка 15 Lorem ipsum dolor s',
-    description: 'Описание карточки 15 Lorem ipsum',
+      title: "Городской пейзаж ночью",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 16,
-    title: 'Карточка 16 Lorem ipsum dolor s',
-    description: 'Описание карточки 16 Lorem ipsum',
+      title: "Абстрактная живопись",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 17,
-    title: 'Карточка 17 Lorem ipsum dolor s',
-    description: 'Описание карточки 17 Lorem ipsum',
+      title: "Разноцветные цветы",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 18,
-    title: 'Карточка 18 Lorem ipsum dolor s',
-    description: 'Описание карточки 18 Lorem ipsum',
+      title: "Закат на озере",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 19,
-    title: 'Карточка 19 Lorem ipsum dolor s',
-    description: 'Описание карточки 19 Lorem ipsum',
+      title: "Городской парк",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 20,
-    title: 'Карточка 20 Lorem ipsum dolor s',
-    description: 'Описание карточки 20 Lorem ipsum',
+      title: "Уличное искусство",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 21,
-    title: 'Карточка 21 Lorem ipsum dolor s',
-    description: 'Описание карточки 21 Lorem ipsum',
+      title: "Поле подсолнухов",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 22,
-    title: 'Карточка 22 Lorem ipsum dolor s',
-    description: 'Описание карточки 22 Lorem ipsum',
+      title: "Горный ландшафт",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 23,
-    title: 'Карточка 23 Lorem ipsum dolor s',
-    description: 'Описание карточки 23 Lorem ipsum',
+      title: "Городской сквер",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 24,
-    title: 'Карточка 24 Lorem ipsum dolor s',
-    description: 'Описание карточки 24 Lorem ipsum',
+      title: "Абстрактная скульптура",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 25,
-    title: 'Карточка 25 Lorem ipsum dolor s',
-    description: 'Описание карточки 25 Lorem ipsum',
+      title: "Лесной ручей",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 26,
-    title: 'Карточка 26 Lorem ipsum dolor s',
-    description: 'Описание карточки 26 Lorem ipsum',
+      title: "Пляжный отдых",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 27,
-    title: 'Карточка 27 Lorem ipsum dolor s',
-    description: 'Описание карточки 27 Lorem ipsum',
+      title: "Интерьер кафе",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 28,
-    title: 'Карточка 28 Lorem ipsum dolor s',
-    description: 'Описание карточки 28 Lorem ipsum',
+      title: "Уличные фрески",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 29,
-    title: 'Карточка 29 Lorem ipsum dolor s',
-    description: 'Описание карточки 29 Lorem ipsum',
+      title: "Коралловый риф",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
   },
   {
-    id: 30,
-    title: 'Карточка 30 Lorem ipsum dolor s',
-    description: 'Описание карточки 30 Lorem ipsum',
-  },
+      title: "Зимний лес",
+      imageUrl: "https://www.eliteflower.ru/upload/resize_cache/iblock/e7e/500_500_2/e7e1a0279b20da6b3c24cb478efe1bfe.jpg"
+  }
 ];
+

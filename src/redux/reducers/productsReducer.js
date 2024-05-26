@@ -2,13 +2,15 @@ import {
   ERROR_GET_PRODUCTS,
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
+  SET_SUGGESTIONS,
   SINGLE_PRODUCT_LOAD,
 } from '../types';
 
 const initialProductsState = {
   products: [],
-  selectedProduct: {},
+  suggestions: [],
   error: null,
+  selectedProduct: {},
 };
 
 export const productsReducer = (state = initialProductsState, action) => {
@@ -19,9 +21,15 @@ export const productsReducer = (state = initialProductsState, action) => {
     case SINGLE_PRODUCT_LOAD: {
       if (action.payload && action.payload.id) {
         return { ...state, error: null, selectedProduct: action.payload };
-      } else {
-        return state;
       }
+      return state;
+    }
+
+    case SET_SUGGESTIONS: {
+      if (action.payload && action.payload.length > 0) {
+        return { ...state, error: null, suggestions: action.payload };
+      }
+      return state;
     }
 
     case ERROR_GET_PRODUCTS:

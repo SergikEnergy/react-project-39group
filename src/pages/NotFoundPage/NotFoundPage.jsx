@@ -1,15 +1,28 @@
+import { useNavigate } from 'react-router-dom';
+
+import { APP_PATHS } from '../../route/paths';
+
 import './NotFoundPage.css';
 
-export const NotFoundPage = () => (
-    <div class="error_wrapper">
-      <div class="error_botImg"></div>
-      <div class="error">
+export const NotFoundPage = () => {
+  const navigate = useNavigate();
+
+  const handleBackHome = () => {
+    console.log(APP_PATHS.MAIN_PAGE);
+    navigate(APP_PATHS.MAIN_PAGE, { replace: true });
+  };
+
+  return (
+    <div className="error_wrapper">
+      <div className="error_botImg"></div>
+      <div className="error">
         <h1>404 Страница не найдена</h1>
         <p>
           Проверьте правильность ввода адреса, вернитесь на предыдущую страницу или попробуйте
           воспользоваться поиском по сайту, чтобы найти что-то конкретное.
         </p>
-        <button>Вернуться на главную</button>
+        <button onClick={handleBackHome}>Вернуться на главную</button>
       </div>
     </div>
-);
+  );
+};

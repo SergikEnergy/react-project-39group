@@ -43,7 +43,7 @@
   padding: 10px;
   font-size: 18px;
   cursor: pointer;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .error button:hover {

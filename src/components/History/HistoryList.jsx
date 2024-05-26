@@ -1,6 +1,8 @@
 import { useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { StyledHistoryList } from "@/components/History/styled/StyledHistoryList";
+
 export const HistoryList = () => {
   const id = useId();
 
@@ -13,7 +15,7 @@ export const HistoryList = () => {
     navigate('/main', { state: { searchInitialValue: text } });
   };
   return (
-    <ul>
+    <StyledHistoryList>
       {history.map((el) => (
         <li
           key={id}
@@ -21,6 +23,6 @@ export const HistoryList = () => {
           {el}
         </li>
       ))}
-    </ul>
+    </StyledHistoryList>
   );
 };

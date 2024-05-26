@@ -10,12 +10,12 @@ import { saveToHistory } from '@/redux/actions';
 import { getProductsWithSearch } from '../../redux/actions';
 import { useProductsSelector } from '../../redux/selectors';
 
-export const SearchBar = () => {
+export const SearchBar = (searchInitialValue) => {
   const dispatch = useDispatch();
   const products = useProductsSelector();
   const history = useNavigate();
   const options = products.suggestions.map((item) => item.label);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(searchInitialValue);
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);

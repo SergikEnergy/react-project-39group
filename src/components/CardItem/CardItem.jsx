@@ -11,8 +11,6 @@ export const CardItem = (props) => {
   const isLiked = favoritesProducts.some(item => item.id === id);
 
   const location = useLocation();
-  // TODO 
-  // Проверить есть ли в редаксе такая карточка (по id) some 
 
   const [liked, setLiked] = useState(isLiked);
   const navigate = useNavigate();

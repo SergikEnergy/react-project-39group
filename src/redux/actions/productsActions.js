@@ -3,7 +3,6 @@ import {
   ERROR_GET_PRODUCTS,
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
-  SET_SEARCH_TERM,
   SET_SUGGESTIONS,
   SINGLE_PRODUCT_LOAD,
 } from '../types';
@@ -111,8 +110,3 @@ export const getInitialProducts = () => {
     }
   };
 };
-
-export const setSearchProducts = (searchProducts) => ({
-  type: SET_SEARCH_TERM,
-  payload: searchProducts,
-});

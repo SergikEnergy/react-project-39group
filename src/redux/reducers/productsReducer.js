@@ -2,7 +2,6 @@ import {
   ERROR_GET_PRODUCTS,
   ERROR_GET_SINGLE_PRODUCT,
   PRODUCTS_LOAD,
-  SET_SEARCH_TERM,
   SET_SUGGESTIONS,
   SINGLE_PRODUCT_LOAD,
 } from '../types';
@@ -39,12 +38,6 @@ export const productsReducer = (state = initialProductsState, action) => {
 
     case ERROR_GET_SINGLE_PRODUCT:
       return { ...state, error: action.payload };
-
-    case SET_SEARCH_TERM:
-      return {
-        ...state,
-        searchProducts: action.payload,
-      };
 
     default:
       return state;

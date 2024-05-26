@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 import { saveToHistory } from '@/redux/actions';
 
-import { setSearchProducts } from '../../redux/actions';
+import { getProductsWithSearch } from '../../redux/actions';
 import { useProductsSelector } from '../../redux/selectors';
 
 export const SearchBar = () => {
@@ -21,20 +21,17 @@ export const SearchBar = () => {
     setSearchValue(event.target.value);
   };
 
-  const handleSearch = () => {
-    const sortedProducts = products.products.filter((product) =>
-      product.title.toLowerCase().includes(searchValue.toLowerCase()),
-    );
-    if (sortedProducts.length === 0) {
-      history('/not-found');
-    }
-    dispatch(setSearchProducts(sortedProducts));
-    dispatch(saveToHistory(searchValue));
-  };
-
-  const handleSearchKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
+  const handleSearch = (event) => {
+    if (event.key === 'Enter' || event.type === 'click') {
+      dispatch(getProductsWithSearch([]));
+      const sortedProducts = products.products.filter((product) =>
+        product.title.toLowerCase().includes(searchValue.toLowerCase()),
+      );
+      if (sortedProducts.length === 0) {
+        history('/not-found');
+      }
+      dispatch(getProductsWithSearch(searchValue));
+      dispatch(saveToHistory(searchValue));
     }
   };
 
@@ -52,7 +49,7 @@ export const SearchBar = () => {
         options={options}
         style={{ width: '50%' }}
         onChange={handleAutocompleteChange}
-        onKeyPress={handleSearchKeyPress}
+        onKeyPress={handleSearch}
         renderInput={(params) => (
           <TextField
             onChange={handleInputChange}

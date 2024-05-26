@@ -7,7 +7,6 @@ export const HistoryList = () => {
   const id = useId();
 
   const history = localStorage.getItem('history').split(',');
-  console.log(history);
 
   const navigate = useNavigate();
 

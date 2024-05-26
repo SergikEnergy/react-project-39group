@@ -15,5 +15,7 @@ export const StyledHistoryList = styled.ul`
   }
   li:hover {
     font-weight: bold;
+    transform: scale(1.1);
+    width: fit-content;
   }
 `;

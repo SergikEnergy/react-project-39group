@@ -63,7 +63,9 @@ const SignUpPage = () => {
       setOpen(true);
       if (data) {
         addAuthInfo.setUser(email);
-        navigate('/');
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
       }
     } catch (error) {
       setRegistrationError(true);

@@ -1,48 +1,16 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, FormControl, Input, InputLabel, Snackbar, Typography } from '@mui/material';
 
 import { useAuthContext } from '@/hooks/useAuthContext';
 
 import { auth } from '../../firebase/index';
 import { APP_PATHS } from '../../route/paths';
 
-const styles = (theme) => ({
-  main: {
-    width: 'auto',
-    display: 'block',
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
-      width: 450,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    border: 'solid 1px gray',
-    marginTop: theme.spacing(12),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing(4)}px ${theme.spacing(4)}px ${theme.spacing(17)}px`,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(10),
-  },
-  submit: {
-    marginTop: theme.spacing(5),
-  },
-});
+import { StyledForm, StyledMain, StyledPaper, StyledSubmit } from './LoginPage.styles';
 
-const LoginPage = (props) => {
-  const { classes } = props;
-
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
@@ -59,7 +27,9 @@ const LoginPage = (props) => {
       setOpen(true);
       if (data) {
         addAuthInfo.setUser(email);
-        location.state?.from?.pathname ? navigate(location.state?.from?.pathname) : navigate('/');
+        setTimeout(() => {
+          location.state?.from?.pathname ? navigate(location.state?.from?.pathname) : navigate('/');
+        }, 1500);
       }
     } catch (error) {
       setLoginError(true);
@@ -81,16 +51,14 @@ const LoginPage = (props) => {
   };
 
   return (
-    <main className={classes.main}>
-      <Paper className={classes.paper}>
+    <StyledMain>
+      <StyledPaper>
         <Typography
           component="h1"
           variant="h5">
           Логин
         </Typography>
-        <form
-          onSubmit={handleSubmit}
-          className={classes.form}>
+        <StyledForm onSubmit={handleSubmit}>
           <FormControl
             margin="normal"
             required
@@ -118,23 +86,21 @@ const LoginPage = (props) => {
               autoComplete="off"
             />
           </FormControl>
-          <Button
+          <StyledSubmit
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}>
+            color="primary">
             Вход
-          </Button>
+          </StyledSubmit>
           <Link to={APP_PATHS.SIGN_UP}>
-            <Button
-              type="submit"
+            <StyledSubmit
+              type="button"
               fullWidth
               variant="contained"
-              color="secondary"
-              className={classes.submit}>
+              color="secondary">
               Регистрация
-            </Button>
+            </StyledSubmit>
           </Link>
           <Snackbar
             open={open}
@@ -160,10 +126,10 @@ const LoginPage = (props) => {
               Неверно введён логин или пароль
             </Alert>
           </Snackbar>
-        </form>
-      </Paper>
-    </main>
+        </StyledForm>
+      </StyledPaper>
+    </StyledMain>
   );
 };
 
-export default withStyles(styles)(LoginPage);
+export default LoginPage;

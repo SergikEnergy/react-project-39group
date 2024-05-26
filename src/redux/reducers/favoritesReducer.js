@@ -22,11 +22,9 @@ export const favoritesReducer = (state = initialFavoritesState, action) => {
       if (index === -1) {
         return state;
       }
-      const old = products.slice(0, index);
-      const newArr = products.slice(index + 1);
-      const result = [...old, ...newArr];
-      localStorage.setItem(KEYFAVORITS, JSON.stringify(result));
-      return { ...state, favoritesReducer: result };
+      const newProducts = [...products.slice(0, index), ...products.slice(index + 1)];
+      localStorage.setItem(KEYFAVORITS, JSON.stringify(newProducts));
+      return { ...state, favoritesProducts: newProducts };
     }
     default:
       return state;

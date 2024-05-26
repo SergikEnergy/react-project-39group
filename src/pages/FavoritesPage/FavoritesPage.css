@@ -5,3 +5,7 @@
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
 }
+
+h1 {
+  text-align: center;
+}

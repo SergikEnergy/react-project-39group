@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,15 +8,11 @@ import './FavoritesItem.css';
 export const FavoritesItem = (props) => {
   const { title, price, thumbnail, id } = props;
 
-  const [items, setItems] = useState();
-  useEffect(() => {}, [items]);
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    setItems(!items);
-    window.location.reload();
     dispatch(removeFromFavorits(id));
   };
 

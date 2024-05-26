@@ -9,16 +9,18 @@ export const FavoritesPage = () => {
     return state.favorites.favoritesProducts;
   });
 
-  return (
+  return favoriteItems.length > 0 ? (
     <div className="card__wrapper">
       {favoriteItems.map((item) => {
         return (
           <FavoritesItem
-            key={item.id}
             {...item}
+            key={item.id}
           />
         );
       })}
     </div>
+  ) : (
+    <h1>Пожалуйста добавьте товары в избранное, сейчас тут пусто...</h1>
   );
 };

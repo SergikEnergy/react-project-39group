@@ -1,1 +1,2 @@
 export const SAVE_TO_HISTORY = 'SAVE_TO_HISTORY';
+

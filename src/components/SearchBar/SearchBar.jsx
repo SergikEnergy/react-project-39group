@@ -5,6 +5,8 @@ import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
+import { saveToHistory } from '@/redux/actions';
+
 import { setSearchProducts } from '../../redux/actions';
 import { useProductsSelector } from '../../redux/selectors';
 
@@ -17,6 +19,7 @@ export const SearchBar = () => {
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
+    dispatch(saveToHistory(event.target.value));
   };
 
   const handleSearch = () => {

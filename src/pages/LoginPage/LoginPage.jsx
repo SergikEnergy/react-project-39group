@@ -27,7 +27,9 @@ const LoginPage = () => {
       setOpen(true);
       if (data) {
         addAuthInfo.setUser(email);
-        location.state?.from?.pathname ? navigate(location.state?.from?.pathname) : navigate('/');
+        setTimeout(() => {
+          location.state?.from?.pathname ? navigate(location.state?.from?.pathname) : navigate('/');
+        }, 1500);
       }
     } catch (error) {
       setLoginError(true);

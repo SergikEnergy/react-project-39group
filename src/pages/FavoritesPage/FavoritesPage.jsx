@@ -1,3 +1,26 @@
+import { useSelector } from 'react-redux';
+
+import { FavoritesItem } from '../../components/FavoritesItem/FavoritesItem';
+
+import './FavoritesPage.css';
+
 export const FavoritesPage = () => {
-  return <div>This is a favorites page</div>;
+  const favoriteItems = useSelector((state) => {
+    return state.favorites.favoritesProducts;
+  });
+
+  return favoriteItems.length > 0 ? (
+    <div className="card__wrapper">
+      {favoriteItems.map((item) => {
+        return (
+          <FavoritesItem
+            {...item}
+            key={item.id}
+          />
+        );
+      })}
+    </div>
+  ) : (
+    <h1>Пожалуйста добавьте товары в избранное, сейчас тут пусто...</h1>
+  );
 };

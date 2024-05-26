@@ -1,0 +1,11 @@
+.card__wrapper {
+  display: grid;
+  margin: 0 auto;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}

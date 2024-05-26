@@ -1,7 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-
 import { CardItem } from '../CardItem/CardItem';
+import { useSelector } from 'react-redux';
 
 import './CardList.css';
 

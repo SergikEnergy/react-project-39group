@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { CustomLoader } from '../../components/CustomLoader';
+import { ProductInfo } from '../../components/ProductInfo/ProductInfo';
 import { getProductById } from '../../redux/actions/productsActions';
 import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
-import {ProductInfo} from '../../components/ProductInfo/ProductInfo';
 
 export const CardPage = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const CardPage = () => {
         height: '100vh',
       }}>
       {isLoading && <CustomLoader />}
-      {isShowedCard && <ProductInfo/>}
+      {isShowedCard && <ProductInfo />}
       {isErrorShowedCard && <div>Ошибка получения карточки</div>}
     </div>
   );

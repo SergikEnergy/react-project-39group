@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import { CardList } from '../../components/CardList/CardList';
 import { CustomLoader } from '../../components/CustomLoader';
@@ -10,6 +11,7 @@ import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
 import './MainPage.css';
 
 export const MainPage = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const { products, error } = useProductsSelector();
   const { isLoading } = useLoaderSelector();
@@ -24,7 +26,7 @@ export const MainPage = () => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar searchInitialValue={location.state?.searchInitialValue || ''} />
       {isLoading && <CustomLoader />}
       {isCardsListShowed && <CardList />}
       {isErrorShowed && (

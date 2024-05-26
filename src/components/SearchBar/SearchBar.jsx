@@ -19,7 +19,6 @@ export const SearchBar = () => {
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
-    dispatch(saveToHistory(event.target.value));
   };
 
   const handleSearch = () => {
@@ -30,6 +29,13 @@ export const SearchBar = () => {
       history('/not-found');
     }
     dispatch(setSearchProducts(sortedProducts));
+    dispatch(saveToHistory(searchValue));
+  };
+
+  const handleSearchKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   const handleAutocompleteChange = (event, value) => {
@@ -46,6 +52,7 @@ export const SearchBar = () => {
         options={options}
         style={{ width: '50%' }}
         onChange={handleAutocompleteChange}
+        onKeyPress={handleSearchKeyPress}
         renderInput={(params) => (
           <TextField
             onChange={handleInputChange}

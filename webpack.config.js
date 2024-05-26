@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
@@ -20,6 +21,8 @@ module.exports = {
     clean: true,
   },
   optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       chunks: 'all',
     },
@@ -53,6 +56,12 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: devMode,
+              url: true,
+              import: true,
+              modules: {
+                auto: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
             },
           },
           {
@@ -70,14 +79,18 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif|jpeg)$/,
+        test: /\.(png|jpg|gif|jpeg)$/i,
         exclude: /node_modules/,
-        use: ['file-loader'],
+        type: 'asset/resource',
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader',
-        options: { limit: false },
+        test: /\.svg$/,
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/i,
+        exclude: /node_modules/,
+        type: 'asset/inline',
       },
     ],
   },
@@ -87,7 +100,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
-      favicon: './public/favIco.png',
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[contenthash:8].css',
@@ -103,5 +115,6 @@ module.exports = {
     port,
     open: true,
     hot: true,
+    compress: true,
   },
 };

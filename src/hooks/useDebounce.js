@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useDebounce = (callback, delay) => {
   const [debounceTimer, setDebounceTimer] = useState(null);
@@ -15,9 +15,11 @@ export const useDebounce = (callback, delay) => {
     if (debounceTimer) {
       clearTimeout(debounceTimer);
     }
-    setDebounceTimer(setTimeout(() => {
-      callback(...args);
-    }, delay));
+    setDebounceTimer(
+      setTimeout(() => {
+        callback(...args);
+      }, delay),
+    );
   };
 
   return debouncedCallback;

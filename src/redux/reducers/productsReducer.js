@@ -11,6 +11,7 @@ const initialProductsState = {
   suggestions: [],
   error: null,
   selectedProduct: {},
+  searchProducts: [],
 };
 
 export const productsReducer = (state = initialProductsState, action) => {

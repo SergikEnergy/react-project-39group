@@ -17,7 +17,7 @@ export const HistoryList = () => {
     <StyledHistoryList>
       {history.map((el) => (
         <li
-          key={id}
+          key={id + Math.random()}
           onClick={() => routeToMain(el)}>
           {el}
         </li>

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { CardList } from '../../components/CardList/CardList';
 import { CustomLoader } from '../../components/CustomLoader';
 import { SearchBar } from '../../components/SearchBar';
-import { getInitialProducts } from '../../redux/actions/productsActions';
+import { getInitialProducts, getProductsWithSearch, getSugestions } from '../../redux/actions/productsActions';
 import { useLoaderSelector, useProductsSelector } from '../../redux/selectors';
 
 import './MainPage.css';
@@ -21,7 +21,12 @@ export const MainPage = () => {
   const isEmptyShowed = !isLoading && !error && products.length === 0;
 
   useEffect(() => {
-    dispatch(getInitialProducts());
+    if (location.state?.searchInitialValue) {
+      dispatch(getProductsWithSearch(location.state?.searchInitialValue));
+      dispatch(getSugestions());
+    } else {
+      dispatch(getInitialProducts());
+    }
   }, [dispatch]);
 
   return (

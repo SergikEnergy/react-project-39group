@@ -21,25 +21,14 @@ export const SearchBar = (searchInitialValue) => {
     setSearchValue(event.target.value);
   };
 
-  const handleSearch = (event) => {
-    if (event.key === 'Enter' || event.type === 'click') {
-      dispatch(getProductsWithSearch([]));
-      const sortedProducts = products.products.filter((product) =>
-        product.title.toLowerCase().includes(searchValue.toLowerCase()),
-      );
-      if (sortedProducts.length === 0) {
-        history('/not-found');
-      }
-      dispatch(getProductsWithSearch(searchValue));
-      dispatch(saveToHistory(searchValue));
-    }
+  const handleSearch = () => {
+    dispatch(getProductsWithSearch(searchValue));
+    dispatch(saveToHistory(searchValue));
   };
 
   const handleAutocompleteChange = (event, value) => {
     if (value) {
-      const card = products.products.find((product) => product.title === value);
       setSearchValue(value);
-      history(`/card/${card.id}`);
     }
   };
 
@@ -49,11 +38,11 @@ export const SearchBar = (searchInitialValue) => {
         options={options}
         style={{ width: '50%' }}
         onChange={handleAutocompleteChange}
-        onKeyPress={handleSearch}
         renderInput={(params) => (
           <TextField
             onChange={handleInputChange}
             {...params}
+            value={searchValue}
             label="Search"
             variant="outlined"
             type="text"

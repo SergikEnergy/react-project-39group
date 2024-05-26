@@ -110,3 +110,24 @@ export const getInitialProducts = () => {
     }
   };
 };
+
+export const getSugestions = () => {
+  return async (dispatch) => {
+    try {
+      const data = await fetch(`${allProductsUrl}`, {
+        method: 'GET',
+      });
+        const response = await data.json();
+        const titles = response.products.map((item) => ({
+          label: item.title,
+          id: item.id,
+        }));
+        dispatch(updateSuggestions(titles));
+    } catch (err) {
+      dispatch({
+        type: ERROR_GET_PRODUCTS,
+        payload: err.message,
+      });
+    } 
+  };
+};

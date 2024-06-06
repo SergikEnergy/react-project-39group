@@ -22,6 +22,9 @@ export const NavAuthorize = () => {
     }
   };
 
+  /* TODO: 
+  event не используется, + принято именовать e
+  */
   const handleLoginError = (event, reason) => {
     if (reason === 'clickaway') {
       return;

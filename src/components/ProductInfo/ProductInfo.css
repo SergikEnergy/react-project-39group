@@ -12,6 +12,9 @@
   max-width: 800px;
   min-height: 500px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   background: linear-gradient(45deg, #eecfba, #c5dde8);
 }
 
@@ -21,6 +24,9 @@
   justify-content: center;
   flex: 0 0 60%;
   overflow: hidden;
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   background-color: #f9f9f9;
 }
 
@@ -40,6 +46,9 @@
 .product__description {
   margin: 10px 0;
   font-size: 16px;
+  /* TODO: 
+  Если начали указывать цвета в одном формате, придерживайтесь одного стиля.
+  */
   color: black;
 }
 
@@ -58,6 +67,9 @@
 }
 
 .prod_price span {
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   color: #dc3545;
 }
 
@@ -67,6 +79,9 @@
   text-decoration: underline;
 }
 .prod_discount span {
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   color: #28a745;
 }
 
@@ -78,6 +93,9 @@
   font-size: 20px;
 }
 .product__rating span {
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   color: #ffb400;
 }
 
@@ -89,17 +107,29 @@
   padding: 5px;
   font-weight: bold;
   border-radius: 25px;
+  /* TODO: 
+  Если начали указывать цвета в одном формате, придерживайтесь одного стиля.
+  */
   color: white;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   box-shadow: 3px 3px 8px #b9abab;
   transition: all 0.5s ease-in-out;
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   background: linear-gradient(180deg, #f05205, #ff9600, #ffd000);
 }
 
 .product__btnBack:hover {
   transform: scale(1.07);
+  /* TODO: 
+  Цвета желательно выносить в константы (примеры чистого кода) 
+  */
   background: #e72424;
 }
 

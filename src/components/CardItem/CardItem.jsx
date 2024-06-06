@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+/* TODO: 
+  Сокращаем пути для удобства использования через файл index.ts
+  */
 import { addToFavorits, removeFromFavorits } from '../../redux/actions';
 import { useFavoritesSelector } from '../../redux/selectors';
 import './CardItem.css';
@@ -22,6 +25,9 @@ export const CardItem = (props) => {
     setLiked((state) => !state);
   };
 
+  /* TODO: 
+  функции  handleLikeClick, handleDislikeClick желательно обьединить в одну утилитарную
+  */
   const handleLikeClick = () => {
     toggleLike();
     dispatch(addToFavorits(props));
